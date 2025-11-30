@@ -15,3 +15,7 @@ print(greeting1)
 character_name = "John" #String
 character_age = 35.4333 #Number
 isMale = True #Boolean
+
+name = input("Enter your name: ")
+age = input("Enter your age: ")
+print("Hello " + name + "! You are " + age + " years old.")
