@@ -14,3 +14,7 @@ def translate(phrase):
 
 print(translate("Shivi is learning Python"))
 print(translate("HELLO"))
+
+
+user_text = input("Enter a phrase: ")
+print(translate(user_text))
