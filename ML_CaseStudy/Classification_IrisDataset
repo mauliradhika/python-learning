@@ -1,0 +1,49 @@
+# Import libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+# Load dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Convert to DataFrame (for better understanding)
+df = pd.DataFrame(X, columns=iris.feature_names)
+df['target'] = y
+
+print("First 5 rows of dataset:")
+print(df.head())
+
+# Split dataset into training and testing
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create model (KNN)
+model = KNeighborsClassifier(n_neighbors=3)
+
+# Train model
+model.fit(X_train, y_train)
+
+# Predict
+y_pred = model.predict(X_test)
+
+# Accuracy
+print("\nAccuracy:", accuracy_score(y_test, y_pred))
+
+# Confusion Matrix
+print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
+
+# Classification Report
+print("\nClassification Report:\n", classification_report(y_test, y_pred))
+
+# Visualization 
+plt.scatter(X[:, 0], X[:, 1], c=y)
+plt.xlabel("Sepal Length")
+plt.ylabel("Sepal Width")
+plt.title("Iris Dataset Visualization")
+plt.show()
